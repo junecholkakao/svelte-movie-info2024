@@ -1,49 +1,70 @@
 <script>
-  import logo1 from './assets/svelte.svg';
-  let logo2 = '/vite.svg';
-  let textRed = "color: red;"
+  import { movies_data } from "./lib/movie_data";
+  import Navbar from "./lib/components/Navbar.svelte";
+  import Modal
+   from "./lib/components/Modal.svelte";
+  import Movies from "./lib/components/Movies.svelte";
+  let isModal = false
+  let selectedMovie
 
-  const data = [
-    {
-      title: "파묘",
-      year: 2024,
-      category: "미스터리, 공포",
-    },
-    {
-      title: "고질라 X 콩: 뉴 엠파이어",
-      year: 2024,
-      category: "어드벤처, 액션, SF",
-    },
-    {
-      title: "듄: 파트2",
-      year: 2024,
-      category: "액션",
-    },
-  ];
+  const closeModal = () => {
+    isModal = false
+  }
 
-  const foods = ['pizza', 'burger', 'sushi', 'pasta'];
+  const openModal = () => {
+    isModal = true
+  }
+
+  const setSelectedMovie = (movie) => {
+    selectedMovie = movie
+  }
 </script>
 
-<main>
-  {#each foods as food, i}
-    <p>{i}: {food}</p>
-  {/each}
-  <h1>영화정보</h1>
-  <img src={logo1} alt="">
-  <img src={logo2} alt="">
-  {#each data as movie, i}
-    <div>
-      <h3 class="bg-yellow" style={textRed}>{movie.title}</h3>
-      <h3>{movie.title}</h3>
-      <p>개봉: {movie.year}</p>
-      <p>장르: {movie.category}</p>
-    </div>
-  {/each}
-</main>
+<Navbar/>
+<div class="event ">
+  <p>NETFLIX 강렬한 운명의 드라마, 경기크리처</p>
+  <button>X</button>
+</div>
+<Movies {setSelectedMovie} {openModal} {movies_data}/>
+
+{#if isModal}
+  <Modal {selectedMovie} {closeModal}/>
+{/if}
 
 <style>
-  .bg-yellow {
-    background: gold;
-    padding: 10px;
+ .event {
+    width: 100%;
+    background: #666;
+    padding: 5px 1em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 1em;
+    padding: 10px 20px;
+
+    /* 창이 보이지 않게 */
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: all 0.4s;
+  }
+
+  /* 기본: 창이 보이게 */
+  .show {
+    opacity: 1;
+    max-height: 100px;
+  }
+
+  .event button {
+    padding: 2px;
+  }
+
+  .event p, .event button {
+    margin: 0;
+  }
+  .event p {
+    width: 100%;
   }
 </style>
