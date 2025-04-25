@@ -7,6 +7,10 @@ settings:
 importers:
 
   .:
+    dependencies:
+      pnpm:
+        specifier: ^10.9.0
+        version: 10.9.0
     devDependencies:
       '@sveltejs/vite-plugin-svelte':
         specifier: ^3.0.2
@@ -374,6 +378,11 @@ packages:
   picocolors@1.1.1:
     resolution: {integrity: sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA==}
 
+  pnpm@10.9.0:
+    resolution: {integrity: sha512-BIbjlGQNPB+zydQ9Sc+Sh5/3T4UWlZwjUwj1qPYuLhlSimXNwqMFj1h83nHro9W1YyfIwzqX5MQFHKSKEMotXw==}
+    engines: {node: '>=18.12'}
+    hasBin: true
+
   postcss@8.5.3:
     resolution: {integrity: sha512-dle9A3yYxlBSrt8Fu+IpjGT8SY8hN0mlaA6GY8t0P5PjIOZemULz/E2Bnm/2dcUOena75OTNkHI76uZBNUUq3A==}
     engines: {node: ^10 || ^12 || >=14}
@@ -697,6 +706,8 @@ snapshots:
       is-reference: 3.0.3
 
   picocolors@1.1.1: {}
+
+  pnpm@10.9.0: {}
 
   postcss@8.5.3:
     dependencies:
